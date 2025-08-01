@@ -1,10 +1,13 @@
-function App() {
+import React from 'react';
+import TravelPlan from "./components/TravelPlan.jsx";
 
+function App() {
     return (
-        <div>
-            <h1 className={"text-4xl text-green-800 text-center"}>Hello World !!!!!!!!</h1>
-        </div>
-    )
+        <>
+            <TravelPlan/>
+
+        </>
+    );
 }
 
-export default App
+export default App;
