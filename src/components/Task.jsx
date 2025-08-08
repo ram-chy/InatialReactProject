@@ -9,6 +9,10 @@ export default function Task({task, onChangeTask, onDeleteTask}) {
             <>
                 <input
                     value={task.text}
+                    onChange={(e) => onChangeTask({
+                        ...task,
+                        text: e.target.value,
+                    })}
                     type='text'
                     className='flex-1 p-2 border border-gray-300 rounded-md focus:outline-none'
                 />
@@ -39,6 +43,13 @@ export default function Task({task, onChangeTask, onDeleteTask}) {
                 <input
                     type='checkbox'
                     className='h-5 w-5 text-blue-600 rounded border-gray-300'
+                    checked={task.done}
+                    onChange={(e) => {
+                        onChangeTask({
+                            ...task,
+                            done: e.target.checked,
+                        });
+                    }}
                 />
 
                 {taskContent}
