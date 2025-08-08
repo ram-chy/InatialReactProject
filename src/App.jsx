@@ -1,10 +1,11 @@
-import {useState} from 'react';
+import {useReducer} from 'react';
 import {initialTasks} from '../data/task.js';
 import AddTask from './components/AddTask.jsx';
 import TaskList from './components/TaskList.jsx';
+import taskReducer from "../reducer/taskReducer.js";
 
 function App() {
-    const [tasks, setTasks] = useState(initialTasks);
+    const [tasks, dispatch] = useReducer(taskReducer, initialTasks);
 
     const getNexId = (data) => {
         const maxId = data.reduce((prev, current) =>
@@ -15,29 +16,22 @@ function App() {
 
     //handalers
     const handleAddTask = (text) => {
-        setTasks([
-            ...tasks,
+        dispatch(
             {
+                type: 'added',
+                text,
                 id: getNexId(tasks),
-                text: text,
-                done: false,
-            },
-        ]);
+            }
+        )
+
     };
 
-    const handleChageTask = (task) => {
-        const nextChange = tasks.map((t) => {
-            if (t.id === task.id) {
-                return task;
-            } else {
-                return t;
-            }
-        });
-        setTasks(nextChange);
+    const handleChangeTask = (task) => {
+
     };
 
     const handleDeleteTask = (taskId) => {
-        setTasks(tasks.filter((t) => t.id !== taskId));
+
     };
 
     return (
@@ -49,7 +43,7 @@ function App() {
 
                 <TaskList
                     tasks={tasks}
-                    onChangeTask={handleChageTask}
+                    onChangeTask={handleChangeTask}
                     onDeleteTask={handleDeleteTask}/>
             </div>
         </>

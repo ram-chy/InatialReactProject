@@ -1,0 +1,26 @@
+        setTasks([
+            ...tasks,
+            {
+                id: getNexId(tasks),
+                text: text,
+                done: false,
+            },
+        ]);
+
+        ...........................
+
+                const nextChange = tasks.map((t) => {
+                    if (t.id === task.id) {
+                        return task;
+                    } else {
+                        return t;
+                    }
+                });
+                setTasks(nextChange);
+
+
+
+                ...........................
+
+
+                setTasks(tasks.filter((t) => t.id !== taskId));
